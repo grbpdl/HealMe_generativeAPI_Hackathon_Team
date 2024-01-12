@@ -1,3 +1,4 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +17,7 @@
   <!-- 
     - favicon
   -->
-  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="shortcut icon" href="{% static 'images/favicon.svg' %}" type="image/svg+xml">
 
   <!-- 
     - google font link
@@ -34,7 +35,7 @@
   <!-- 
     - custom css link
   -->
-  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 </head>
 
@@ -75,7 +76,7 @@
         <div class="container">
 
           <figure class="music-banner">
-            <img src="./assets/images/poster-1.jpg" width="800" height="800" alt="Happy Moments (Master) Album Poster"
+            <img src="{% static 'images/poster-1.jpg'%}" width="800" height="800" alt="Happy Moments (Master) Album Poster"
               class="img-cover" data-player-banner>
           </figure>
 
@@ -171,14 +172,7 @@
     </article>
   </main>
 
-
-
-
-
-  <!-- 
-    - custom js link
-  -->
-  <script src="./assets/js/script.js"></script>
+  <script src="{% static 'js/script.js' %}"></script>
 
 </body>
 

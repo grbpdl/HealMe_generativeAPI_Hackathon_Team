@@ -5,15 +5,31 @@
 <title>Progress Report</title>
 {% endblock title%}
 
+{% block additionalstyle %}
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #c8e9e8;
+}
+</style>
+{%endblock additionalstyle%}
+
+{% block navbar %}
+<div class="navbar navbar-light navbar-expand-lg bg-light fixed-top d-flex justify-content-between" style="
+    background-color: #0056b3;">
+{%endblock navbar%}
+
 {% block content%}
-<div class="card text-center">
+<div class="d-flex justify-content-center">
+<div class="card text-center" style=" width:1000px; margin-top:250px;">
     <div class="card-header">
       ADHD - Test Result
     </div>
     <div class="card-body">
       <h5 class="card-title"></h5>
-      <p class="card-text">You have <strong>{{adhd_level}}</strong> ADHD Level  </p>
-      <a href="{% url 'progress_report' %}" class="btn btn-primary">View Progress</a>
+      <p class="card-text">You have <strong>{{level}}</strong> ADHD Level  </p>
+      <a href="{% url 'adhd_form' %}" class="btn btn-primary">View Progress</a>
     </div>
   </div>
+</div>
 {%endblock content%}
