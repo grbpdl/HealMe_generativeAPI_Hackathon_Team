@@ -61,7 +61,7 @@
 <body>
     <div class="container">
         <h1>Please fill up the form</h1>
-        <form action="#" method="post">
+        <form  onsubmit="return false;">    
             <div class="question">
                 <p><strong>1. Do you tend to avoid or delay getting started on a new important task? * </strong></p>
                 <div class="options">
@@ -422,8 +422,47 @@
                 </div>
             </div>
 
-            <input type="submit" value="Submit" >
+            <button type="submit" value="Submit" onclick="average()" >Submit</button>
         </form>
     </div>
 </body>
 </html>
+
+<script>
+    function average() 
+    {   
+        var option1 = parseInt(document.querySelector('input[name="option-1"]:checked').value);
+        var option2 = parseInt(document.querySelector('input[name="option-2"]:checked').value);
+        var option3 = parseInt(document.querySelector('input[name="option-3"]:checked').value);
+        var option4 = parseInt(document.querySelector('input[name="option-4"]:checked').value);
+        var option5 = parseInt(document.querySelector('input[name="option-5"]:checked').value);
+        var option6 = parseInt(document.querySelector('input[name="option-6"]:checked').value);
+        var option7 = parseInt(document.querySelector('input[name="option-7"]:checked').value);
+        var option8 = parseInt(document.querySelector('input[name="option-8"]:checked').value);
+        var option9 = parseInt(document.querySelector('input[name="option-9"]:checked').value);
+        var option10 = parseInt(document.querySelector('input[name="option-10"]:checked').value);
+
+        var sum = option1 + option2 + option3 + option4 + option5 + option6 + option7 + option8 + option9 + option10;
+        console.log("Sum: " + sum);   
+        var avg=sum/10;
+
+        if (avg<=3 && avg>=1)
+            {
+                console.log("Mild")
+                
+            }
+        
+        if (avg<=7 && avg>=4)
+        {
+            console.log("Moderate")
+        }
+
+        if (avg<=10 && avg>=8)
+            {
+                console.log("Severe")
+            }
+        
+
+    }
+</script>
+
