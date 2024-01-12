@@ -1,67 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questionnaire</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
+{% extends 'home.html' %}
+{% load static %}
 
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
+{% block title%}
+<title>Progress Tracking</title>
+{% endblock title%}
 
-        h1 {
-            text-align: center;
-        }
+{%block additionalstyle%}
 
-        .question {
-            margin-bottom: 15px;
-        }
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #c8e9e8;
+    }
 
-        .options {
-            display: flex;
-            flex-direction: column;
-        }
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
 
-        .option {
-            margin-bottom: 10px;
-        }
+    h2 {
+        text-align: center;
+    }
 
-        label {
-            display: inline-block;
-            margin-right: 10px;
-        }
+    .question {
+        margin-bottom: 15px;
+    }
 
-        input[type="radio"] {
-            margin-right: 5px;
-        }
+    .options {
+        display: flex;
+        flex-direction: column;
+    }
 
-        input[type="submit"] {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+    .option {
+        margin-bottom: 10px;
+    }
 
-        input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Please fill up the form</h1>
-        <form  onsubmit="return false;">    
+    label {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    input[type="radio"] {
+        margin-right: 5px;
+    }
+
+    input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+</style>
+{%endblock additionalstyle%}
+
+{% block navbar %}
+<div class="navbar navbar-light navbar-expand-lg bg-light fixed-top d-flex justify-content-between" style="
+    background-color: #0056b3;">
+{%endblock navbar%}
+
+{% block content%}
+    <div class="container" style="margin-top:100px;">
+        <h2>ADHD - TEST</h2>
+        <form onsubmit="return false;" action="{% url 'progress_report' request.user.id %} method="POST">   
+            {% csrf_token %} 
             <div class="question">
                 <p><strong>1. Do you tend to avoid or delay getting started on a new important task? * </strong></p>
                 <div class="options">
@@ -422,48 +433,9 @@
                 </div>
             </div>
 
-            <button type="submit" value="Submit" onclick="average()" >Submit</button>
+            <button type="submit" value="Submit" >Submit</button>
         </form>
     </div>
-</body>
-</html>
+    
+{%endblock content%}
 
-<script>
-    function average() 
-    {   
-        var option1 = parseInt(document.querySelector('input[name="option-1"]:checked').value);
-        var option2 = parseInt(document.querySelector('input[name="option-2"]:checked').value);
-        var option3 = parseInt(document.querySelector('input[name="option-3"]:checked').value);
-        var option4 = parseInt(document.querySelector('input[name="option-4"]:checked').value);
-        var option5 = parseInt(document.querySelector('input[name="option-5"]:checked').value);
-        var option6 = parseInt(document.querySelector('input[name="option-6"]:checked').value);
-        var option7 = parseInt(document.querySelector('input[name="option-7"]:checked').value);
-        var option8 = parseInt(document.querySelector('input[name="option-8"]:checked').value);
-        var option9 = parseInt(document.querySelector('input[name="option-9"]:checked').value);
-        var option10 = parseInt(document.querySelector('input[name="option-10"]:checked').value);
-
-        var sum = option1 + option2 + option3 + option4 + option5 + option6 + option7 + option8 + option9 + option10;
-        console.log("Sum: " + sum);   
-        var avg=sum/10;
-
-        if (avg<=3 && avg>=1)
-            {
-                console.log("Mild")
-                
-            }
-        
-        if (avg<=7 && avg>=4)
-        {
-            console.log("Moderate")
-        }
-
-        if (avg<=10 && avg>=8)
-            {
-                console.log("Severe")
-            }
-        
-
-    }
-</script>
-
-{% comment %} Here, some extra work need to be done {% endcomment %}

@@ -1,0 +1,19 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block title%}
+<title>Progress Report</title>
+{% endblock title%}
+
+{% block content%}
+<div class="card text-center">
+    <div class="card-header">
+      ADHD - Test Result
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"></h5>
+      <p class="card-text">You have <strong>{{adhd_level}}</strong> ADHD Level  </p>
+      <a href="{% url 'progress_report' %}" class="btn btn-primary">View Progress</a>
+    </div>
+  </div>
+{%endblock content%}
