@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaire</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .question {
+            margin-bottom: 15px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .option {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Please fill up the form</h1>
+        <form action="#" method="post">
+            <div class="question">
+                <p><strong>1. Do you tend to avoid or delay getting started on a new important task? * </strong></p>
+                <div class="options">
+                    <div class="option">
+                        <label for="q1-option1">
+                            <input type="radio" name="option-1" id="q1-option1" value="1">
+                            Never
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q1-option2">
+                            <input type="radio" name="option-1" id="q1-option2" value="2">
+                            Rarely
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q1-option3">
+                            <input type="radio" name="option-1"id="q1-option3" value="3">
+                            Sometimes
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q1-option4">
+                            <input type="radio" name="option-1" id="q1-option4" value="4">
+                            Often
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q1-option5">
+                            <input type="radio" name="option-1" id="q1-option5" value="5">
+                            Very Often
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <p><strong>2. Do you find that the majority of your tasks (work/school assignments, etc.) are boring or repetitive, making them difficult to complete? *</strong></p>
+                <div class="options">
+                    <div class="option">
+                        <label for="q2-option1">
+                            <input type="radio" name="option-2" id="q2-option1" value="1">
+                            Never
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q2-option2">
+                            <input type="radio" name="option-2" id="q2-option2" value="2">
+                            Rarely
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q2-option3">
+                            <input type="radio" name="option-2" id="q2-option3" value="3">
+                            Sometimes
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q2-option4">
+                            <input type="radio" name="option-2" id="q2-option4" value="4">
+                            Often
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q2-option5">
+                            <input type="radio" name="option-2" id="q2-option5" value="5">
+                            Very Often
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <p><strong>3. Do you find yourself making careless mistakes when engaged in something you feel is boring, repetitive, or difficult? *</strong></p>
+                <div class="options">
+                    <div class="option">
+                        <label for="q3-option1">
+                            <input type="radio" name="option-3" id="q3-option1" value="1">
+                            Never
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q3-option2">
+                            <input type="radio" name="option-3" id="q3-option2" value="2">
+                            Rarely
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q3-option3">
+                            <input type="radio" name="option-3" id="q3-option3" value="3">
+                            Sometimes
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q3-option4">
+                            <input type="radio" name="option-3" id="q3-option4" value="4">
+                            Often
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q3-option5">
+                            <input type="radio" name="option-3" id="q3-option5" value="5">
+                            Very Often
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <p><strong>4. How often do you feel restless or fidgety? *</strong></p>
+                <div class="options">
+                    <div class="option">
+                        <label for="q4-option1">
+                            <input type="radio" name="option-4" id="q4-option1" value="1">
+                            Never
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q4-option2">
+                            <input type="radio" name="option-4" id="q4-option2" value="2">
+                            Rarely
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q4-option3">
+                            <input type="radio" name="option-4" id="q4-option3" value="3">
+                            Sometimes
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q4-option4">
+                            <input type="radio" name="option-4" id="q4-option4" value="4">
+                            Often
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q4-option5">
+                            <input type="radio" name="option-4" id="q4-option5" value="5">
+                            Very Often
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <p><strong>5. Do you regularly fail to remember important appointments or obligations? *</strong></p>
+                <div class="options">
+                    <div class="option">
+                        <label for="q5-option1">
+                            <input type="radio" name="option-5" id="q5-option1" value="1">
+                            Never
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q5-option2">
+                            <input type="radio" name="option-5" id="q5-option2" value="2">
+                            Rarely
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q5-option3">
+                            <input type="radio" name="option-5" id="q5-option3" value="3">
+                            Sometimes
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q5-option4">
+                            <input type="radio" name="option-5" id="q5-option4" value="4">
+                            Often
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q5-option5">
+                            <input type="radio" name="option-5" id="q5-option5" value="5">
+                            Very Often
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <p><strong>6. Do you have difficulty unwinding or feel often on the go? *</strong></p>
+                <div class="options">
+                    <div class="option">
+                        <label for="q6-option1">
+                            <input type="radio" name="option-6" id="q6-option1" value="1">
+                            Never
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q6-option2">
+                            <input type="radio" name="option-6" id="q6-option2" value="2">
+                            Rarely
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q6-option3">
+                            <input type="radio" name="option-6" id="q6-option3" value="3">
+                            Sometimes
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q6-option4">
+                        <input type="radio" name="option-6" id="q6-option4" value="1">
+                            Often
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q6-option5">
+                            <input type="radio" name="option-6" id="q6-option5" value="5">
+                            Very Often
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <p><strong>7. Do you have difficulty concentrating on people when they are speaking to you? *</strong></p>
+                <div class="options" required>
+                    <div class="option">
+                        <label for="q7-option1">
+                            <input type="radio" name="option-7" id="q7-option1" value="1">
+                            Never
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q7-option2">
+                            <input type="radio" name="option-7" id="q7-option2" value="2">
+                            Rarely
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q7-option3">
+                            <input type="radio" name="option-7" id="q7-option3" value="3">
+                            Sometimes
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q7-option4">
+                            <input type="radio" name="option-7" id="q7-option4" value="4">
+                            Often
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q7-option5">
+                            <input type="radio" name="option-7" id="q7-option5" value="5">
+                            Very Often
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <p><strong>8. Do you frequently misplace things (or have difficulty finding them)? *</strong></p>
+                <div class="options">
+                    <div class="option">
+                        <label for="q8-option1">
+                            <input type="radio" name="option-8" id="q8-option1" value="1">
+                            Never
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q8-option2">
+                            <input type="radio" name="option-8" id="q8-option2" value="2">
+                            Rarely
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q8-option3">
+                            <input type="radio" name="option-8" id="q8-option3" value="3">
+                            Sometimes
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q8-option4">
+                            <input type="radio" name="option-8" id="q8-option4" value="4">
+                            Often
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q8-option5">
+                            <input type="radio" name="option-8" id="q8-option5" value="5">
+                            Very Often
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <p><strong>9. Are you typically distracted (or find it hard to focus) when there is activity or noise around you? *</strong></p>
+                <div class="options">
+                    <div class="option">
+                        <label for="q9-option1">
+                            <input type="radio" name="option-9" id="q9-option1" value="1">
+                            Never
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q9-option2">
+                            <input type="radio" name="option-9" id="q9-option2" value="2">
+                            Rarely
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q9-option3">
+                            <input type="radio" name="option-9" id="q9-option3" value="3">
+                            Sometimes
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q9-option4">
+                            <input type="radio" name="option-9" id="q9-option4" value="4">
+                            Often
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q9-option5">
+                            <input type="radio" name="option-9" id="q9-option5" value="5">
+                            Very Often
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <p><strong>10. Do you find yourself avoiding situations like waiting your turn in line when waiting is expected and appropriate (i.e. at the grocery store)? *</strong></p>
+                <div class="options">
+                    <div class="option">
+                        <label for="q10-option1">
+                            <input type="radio" name="option-10" id="q10-option1" value="1">
+                            Never
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q10-option2">
+                            <input type="radio" name="option-10" id="q10-option2" value="2">
+                            Rarely
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q10-option3">
+                            <input type="radio" name="option-10" id="q10-option3" value="3">
+                            Sometimes
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q10-option4">
+                            <input type="radio" name="option-10" id="q10-option4" value="4">
+                            Often
+                        </label>
+                    </div>
+                    <div class="option">
+                        <label for="q10-option5">
+                            <input type="radio" name="option-10" id="q10-option5" value="5">
+                            Very Often
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <input type="submit" value="Submit" >
+        </form>
+    </div>
+</body>
+</html>
