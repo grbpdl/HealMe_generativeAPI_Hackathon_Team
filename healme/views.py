@@ -47,3 +47,14 @@ def signout(request):
     logout(request)
     messages.success(request,'Signed out successfully!')
     return redirect('home')
+
+#views.py
+from django.http import HttpResponse
+from django.shortcuts import render
+from django.template import loader
+ 
+def chart(request):
+    data_points = [
+        { "label": "time",  "y": 10  },
+    ]
+    return render(request, 'charts.html', { "data_points" : data_points }) 
