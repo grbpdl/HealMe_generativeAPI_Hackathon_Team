@@ -1,0 +1,62 @@
+<!-- Your Django template file, e.g., template.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loader</title>
+    <style>
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 3px solid #FFF;
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+        .loader::after {
+            content: '';
+            box-sizing: border-box;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 3px solid;
+            border-color: #006b0e transparent;
+        }
+
+        @keyframes rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        } 
+    </style>
+</head>
+<body>
+    <form method="post" action="{% url 'your_view_name' %}">
+        {% csrf_token %}
+        <div>
+            <button id="sendButton" type="submit" onclick="showLoader()">Send</button>
+        </div>
+    </form>
+
+    <script>
+        function showLoader() {
+            var button = document.getElementById('sendButton');
+            var loader = document.createElement('span');
+            loader.className = 'loader';
+
+            // Replace the button with the loader
+            button.parentNode.replaceChild(loader, button);
+        }
+    </script>
+</body>
+</html>
