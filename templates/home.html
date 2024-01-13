@@ -4,9 +4,76 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.25,shrink-to-fit=no">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    <meta name="viewport" content="width=device-width, initial-scale=1.25, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"> </script>
+    <script>
+        $(document).ready(function(){
+            $("#myMessage").modal('show');
+        });
+            
+        function sendMessage() {
+                var textarea = document.getElementById("text");
+                var message = textarea.value.trim();
+    
+                if (message) {
+                    // Display user message on the right side
+                    displayMessage("user", message);
+                    displayMessage("bot", "Typing...");
+    
+                    // Send user input to the server using AJAX
+                    $.ajax({
+                        type: "POST",
+                        url: "{% url 'chat_handler' %}",  // Use the correct URL pattern name
+                        data: {
+                            csrfmiddlewaretoken: "{{ csrf_token }}", // Include CSRF token in the data
+                            message: message
+                        },
+                        success: function (response) {
+                            console.log(response.response)
+                            displayMessage("bot", response.response);
+    
+                            // Clear the input field
+                            textarea.value = "";
+    
+                            // Scroll to the latest message
+                            scrollChatToBottom();
+                            
+                        }
+                    });
+                }
+            }
+        
+    
+        // Define the displayMessage function
+        function displayMessage(sender, message) {
+            var chatBody = document.getElementById("chat-messages");
+            var newMessage = document.createElement("div");
+            newMessage.classList.add("d-flex", "mb-4");
+            if (sender === "user") {
+                newMessage.innerHTML = `
+                <div class="p-3 me-3 border d-flex justify-content-end w-full" style=" shrink-fit:none; border-radius: 15px; background-color: #f3f4f6; flex-wrap:wrap;">
+                    <p class="small mb-0">${message}</p>
+                </div>
+                `;
+            } else if (sender === "bot") { 
+                newMessage.innerHTML = `
+                    <div class="p-3 ms-3 border" style="border-radius: 15px; background-color: #93df9f59 ; flex-wrap: wrap;">
+                        <p class="small mb-0">${message}</p>
+                    </div>
+                `;
+            }
+    
+            chatBody.appendChild(newMessage);
+        }
+    
+        // Define the scrollChatToBottom function
+        function scrollChatToBottom() {
+            var chatBody = document.getElementById("chat-messages");
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+    </script>
     {% block title%}
     <title>HealMe</title>
     {% endblock title%}
@@ -15,11 +82,11 @@
 <body>
         <div class="navbar navbar-light navbar-expand-lg bg-light fixed-top d-flex justify-content-between" style="
             background-color: #f8f9fa99 !important;">
-            <div><a href="{% url 'home' %}"><img src="{% static 'images/healme_logo.png' %}" alt="logo" height="60px" width="100px"></a></div>
+            <div><a href="{% url 'home' %}"><img src="{% static 'images/healme_logo.png' %}" alt="logo" height="70px" width="100px"></a></div>
             <div>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active mr-sm-3">
-                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active mr-sm-3">
                         <a class="nav-link" href="#services">About Us</span></a>
@@ -54,16 +121,12 @@
     background-attachment: fixed;
     height: 100vh;">
     
+ 
+
+
         {% for message in messages %}
            {% if message.tags == 'success' %}
-           <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-            <script>
-                $(document).ready(function(){
-                    $("#myMessage").modal('show');
-                });
-            </script>
+
             <div class="modal fade" id="myMessage" tabindex="-1" role="dialog" aria-labelledby="myMessageLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
@@ -87,14 +150,6 @@
                 </div>
               </div>
             {% else %}
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-            <script>
-                $(document).ready(function(){
-                    $("#myMessage").modal('show');
-                });
-            </script>
             <div class="modal fade" id="myMessage" tabindex="-1" role="dialog" aria-labelledby="myMessageLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
@@ -201,15 +256,71 @@
     </div>
     </div>
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
+{% comment %} <div class="d-flex justify-content-center align-items-center" style="">
+    <div class=" card d-flex align-items-center justify-content-center" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Chatbot</h5>
+          <p class="card-text">Hi! I am Eunoia, Your Mental health assistant. Feel free to share me your feelings. Our conversation would not be stored on server. </p>
+          <a href="#" class="btn btn-primary">Chat Now</a>
+        </div>
+      </div>
+</div> {% endcomment %}
+<!-- Chat Section -->
+<!-- Chat Section -->
+<section>
+    <div class="container py-5 " >
+        <div class="row d-flex justify-content-center " >
+            <div class="col-md-8 col-lg-6 col-xl-4" style="margin-top: 100px;">
+                <div class="card" id="chat1" style="border-radius: 15px; display: flex; flex-direction: column; height:500px;">
+                    <div class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0" style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                        <i class="fas fa-angle-left"></i>
+                        <p class="mb-0 fw-bold">HealMe - ChatBot</p>
+                        <i class="fas fa-times"></i>
+                    </div>
+
+                    <!-- Chat messages scrollable container -->
+                    <div class="card-body" id="chat-messages" style="overflow-x: scroll; flex-grow: 1; max-height: 300px;">
+
+                        <div class="p-3 me-3 mb-sm-4 border d-flex justify-content-end" style="border-radius: 15px; background-color: #93df9f59; flex-wrap:wrap;">
+                            <p class="small mb-0">
+                                Hi User, <br>
+                                I am healme, your mental health assistant!<br>
+                                Feel free to share me your feelings.<br>
+                                Our conversation would not be saved on server<br>
+                            </p>
+                        </div>
+                        {% comment %} <div>
+                            <p>{{output}}</p>
+                        </div> {% endcomment %}
+                        <!-- Chat messages will appear here -->
+                    </div>
+
+                    <!-- Chat Input -->
+                    <div class="form-outline d-flex" style="padding: 10px; position:relative; top:50px;">
+                        {% comment %} <form enctype="multipart/form-data" method="POST"> {% endcomment %}
+                            {% comment %} {% csrf_token %} {% endcomment %}
+                            <textarea class="form-control" id="text" rows="2" name="message" placeholder="Type here..." style="flex-grow: 1; margin-right: 10px;"></textarea>
+    
+                            <button type="submit" onclick="sendMessage()" class="btn btn-success ">Send</button>
+                        {% comment %} </form> {% endcomment %}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</section>
+
+{% comment %} <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script> {% endcomment %}
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+crossorigin="anonymous"></script>
+
+
 </body>
 </html>
