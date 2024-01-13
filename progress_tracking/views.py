@@ -4,6 +4,7 @@ from .forms import TaskForm
 from django.contrib.auth.models import User
 from django.http import HttpRequest, HttpResponse
 from django.contrib import messages
+from .models import ADHDProgress
 
 
 def adhd_info(request):
@@ -29,15 +30,21 @@ def track_progress_report(request, id):
             avg = total_sum / 10
             print(avg)
             level = ""
-            if avg <= 3 and avg > 1:
+            if avg <=1:
+                level = "Normal"
+            elif avg <2 and avg >= 1:
                 level = "Mild"
-            elif avg <= 7 and avg > 4:
+            elif avg <3 and avg >=2:
                 level = "Moderate"
-            elif avg <= 10 and avg > 8:
+            elif avg<4 and avg >=3:
                 level = "Severe"
+            elif avg<=5 and avg>=4:
+                level = "Very Severe"
             return render(request, 'adhd_report.html', {'level': level})
         else:
             messages.error(request, 'You missed some questions!')
 
     return render(request, 'adhd.html', {'form': form})
 
+def progress_chart(request):
+    return render(request, 'charts.html')
