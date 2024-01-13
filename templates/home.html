@@ -20,7 +20,6 @@
                 if (message) {
                     // Display user message on the right side
                     displayMessage("user", message);
-                    displayMessage("bot", "Typing...");
     
                     // Send user input to the server using AJAX
                     $.ajax({
@@ -77,11 +76,14 @@
     {% block title%}
     <title>HealMe</title>
     {% endblock title%}
+    {%block additionalstyle%}{%endblock additionalstyle%}
 </head>
 
 <body>
+        {% block navbar %}
         <div class="navbar navbar-light navbar-expand-lg bg-light fixed-top d-flex justify-content-between" style="
             background-color: #f8f9fa99 !important;">
+        {%endblock navbar%}
             <div><a href="{% url 'home' %}"><img src="{% static 'images/healme_logo.png' %}" alt="logo" height="70px" width="100px"></a></div>
             <div>
                 <ul class="navbar-nav mr-auto">
@@ -98,7 +100,7 @@
                         <a class="nav-link" href="#services">Relaxing Sounds</span></a>
                     </li>
                     <li class="nav-item active mr-sm-3">
-                        <a class="nav-link" href="#services">Mood Tracker</span></a>
+                        <a class="nav-link" href="{% url 'progress'  %}">Your Progress</span></a>
                     </li>
                 </ul>
             </div>
@@ -107,166 +109,21 @@
                     <span class="text-black mr-lg-5 pt-sm-1">Welcome,<strong> {{request.user.first_name}}</strong></span>
                     <a href="{% url 'logout' %}"><button class="btn btn-success mr-sm-2" type="submit">Logout</button></a>
                 {% else %}
-                    <button class="btn btn-success mr-sm-3" type="submit" data-toggle="modal"
+                    <button class="btn btn-success mr--3" type="submit" data-toggle="modal"
                             data-target="#signupModal">Register</button>
                     <button class="btn btn-success mr-sm-2" type="submit" type="submit" data-toggle="modal"
                             data-target="#signinModal">Login</button>
                 {% endif %}
                 </div>
         </div>
-        <div style="background-image: url('{% static 'images/background.png' %}');
+{%block content%}
+<div style="background-image: url('{% static 'images/background.png' %}');
     background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     height: 100vh;">
-    
- 
 
-
-        {% for message in messages %}
-           {% if message.tags == 'success' %}
-
-            <div class="modal fade" id="myMessage" tabindex="-1" role="dialog" aria-labelledby="myMessageLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="myMessageLabel">Perfect!</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body text-center">
-                        <div class="text-center text-success mt-3">
-                           <img src=" {% static 'images/greentick.png' %} " width="100px" height="100px" alt="verified logo">
-                        </div>
-                        <br>
-                        <div class="mb-3">{{message}}</div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            {% else %}
-            <div class="modal fade" id="myMessage" tabindex="-1" role="dialog" aria-labelledby="myMessageLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="myMessageLabel">Oops!!</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body text-center">
-                        <div class="text-center text-success mt-3">
-                           <img src=" {% static 'images/cross.png' %} " width="100px" height="100px" alt="verified logo">
-                        </div>
-                        <br>
-                        <div class="mb-3">{{message}}</div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            {% endif %}
-    
-        {% endfor%}
-        
-    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">HealMe - Register</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="{% url 'register' %}" method="post">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="inputusername">Username</label>
-                        <input type="text" class="form-control" id="inputusername" placeholder="Enter username" name="username">
-                    </div>
-                    <div class="form-group">
-                        <label for="fullname">Full Name</label>
-                        <input type="text" class="form-control" id="fullname" placeholder="Enter full name"
-                            name="fullname">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputEmail">Email address</label>
-                        <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
-                            placeholder="Enter email" name="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword1">Password</label>
-                        <input type="password" class="form-control" id="inputPassword1"
-                            placeholder="Enter password" name="pass1">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword2">Confirm password</label>
-                        <input type="password" class="form-control" id="inputPassword2"
-                            placeholder="Enter password again" name="pass2">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Register</button>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-    </div> 
-    
-    <!-- SignIn Modal -->
-    <div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="signinModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">HealMe - Login</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="{% url 'login' %}" method="post" >
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="inputusername">Username</label>
-                        <input type="text" class="form-control" id="inputusername" placeholder="Enter username" name="username">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword1">Password</label>
-                        <input type="password" class="form-control" id="inputPassword1"
-                            placeholder="Enter password" name="password">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-    </div>
-
-{% comment %} <div class="d-flex justify-content-center align-items-center" style="">
-    <div class=" card d-flex align-items-center justify-content-center" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title">Chatbot</h5>
-          <p class="card-text">Hi! I am Eunoia, Your Mental health assistant. Feel free to share me your feelings. Our conversation would not be stored on server. </p>
-          <a href="#" class="btn btn-primary">Chat Now</a>
-        </div>
-      </div>
-</div> {% endcomment %}
-<!-- Chat Section -->
-<!-- Chat Section -->
 <section>
     <div class="container py-5 " >
         <div class="row d-flex justify-content-center " >
@@ -309,6 +166,138 @@
         </div>
     </div>
 </section>
+{%endblock content%}
+{% for message in messages %}
+{% if message.tags == 'success' %}
+
+ <div class="modal fade" id="myMessage" tabindex="-1" role="dialog" aria-labelledby="myMessageLabel" aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered" role="document">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title" id="myMessageLabel">Perfect!</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+           </button>
+         </div>
+         <div class="modal-body text-center">
+             <div class="text-center text-success mt-3">
+                <img src=" {% static 'images/greentick.png' %} " width="100px" height="100px" alt="verified logo">
+             </div>
+             <br>
+             <div class="mb-3">{{message}}</div>
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+         </div>
+       </div>
+     </div>
+   </div>
+ {% else %}
+ <div class="modal fade" id="myMessage" tabindex="-1" role="dialog" aria-labelledby="myMessageLabel" aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered" role="document">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title" id="myMessageLabel">Oops!!</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+           </button>
+         </div>
+         <div class="modal-body text-center">
+             <div class="text-center text-success mt-3">
+                <img src=" {% static 'images/cross.png' %} " width="100px" height="100px" alt="verified logo">
+             </div>
+             <br>
+             <div class="mb-3">{{message}}</div>
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+         </div>
+       </div>
+     </div>
+   </div>
+ {% endif %}
+
+{% endfor%}
+
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+ <div class="modal-header">
+     <h5 class="modal-title">HealMe - Register</h5>
+     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+     </button>
+ </div>
+ <div class="modal-body">
+     <form action="{% url 'register' %}" method="post">
+         {% csrf_token %}
+         <div class="form-group">
+             <label for="inputusername">Username</label>
+             <input type="text" class="form-control" id="inputusername" placeholder="Enter username" name="username">
+         </div>
+         <div class="form-group">
+             <label for="fullname">Full Name</label>
+             <input type="text" class="form-control" id="fullname" placeholder="Enter full name"
+                 name="fullname">
+         </div>
+         <div class="form-group">
+             <label for="inputEmail">Email address</label>
+             <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+                 placeholder="Enter email" name="email">
+         </div>
+         <div class="form-group">
+             <label for="inputPassword1">Password</label>
+             <input type="password" class="form-control" id="inputPassword1"
+                 placeholder="Enter password" name="pass1">
+         </div>
+         <div class="form-group">
+             <label for="inputPassword2">Confirm password</label>
+             <input type="password" class="form-control" id="inputPassword2"
+                 placeholder="Enter password again" name="pass2">
+         </div>
+         <button type="submit" class="btn btn-primary">Register</button>
+     </form>
+ </div>
+ <div class="modal-footer">
+     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+ </div>
+</div>
+</div>
+</div> 
+
+<!-- SignIn Modal -->
+<div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="signinModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+ <div class="modal-header">
+     <h5 class="modal-title">HealMe - Login</h5>
+     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+     </button>
+ </div>
+ <div class="modal-body">
+     <form action="{% url 'login' %}" method="post" >
+         {% csrf_token %}
+         <div class="form-group">
+             <label for="inputusername">Username</label>
+             <input type="text" class="form-control" id="inputusername" placeholder="Enter username" name="username">
+         </div>
+         <div class="form-group">
+             <label for="inputPassword1">Password</label>
+             <input type="password" class="form-control" id="inputPassword1"
+                 placeholder="Enter password" name="password">
+         </div>
+         <button type="submit" class="btn btn-primary">Login</button>
+     </form>
+ </div>
+ <div class="modal-footer">
+     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+ </div>
+</div>
+</div>
+</div>
 
 {% comment %} <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

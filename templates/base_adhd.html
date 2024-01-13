@@ -1,0 +1,31 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block title%}
+<title>ADHD</title>
+{% endblock title%}
+
+{% block navbar %}
+<div class="navbar navbar-light navbar-expand-lg bg-light fixed-top d-flex justify-content-between" style="
+    background-color: #0056b3;">
+{%endblock navbar%}
+
+{% block content%}
+<div class="d-flex justify-content-center" >
+    <h1>ADHD</h1>
+</div>
+<div class="d-flex justify-content-center" >
+        <h4 style="width:1200px;">Attention deficit hyperactivity disorder (ADHD) is a condition that affects people's behaviour. People with ADHD can seem restless, may have trouble concentrating and may act on impulse.<br>
+            Symptoms of ADHD tend to be noticed at an early age and may become more noticeable when a child's circumstances change, such as when they start school.<br>Most cases are diagnosed when children are under 12 years old, but sometimes it's diagnosed later in childhood.<br>Sometimes ADHD was not recognised when someone was a child, and they are diagnosed later as an adult.<br>The symptoms of ADHD may improve with age, but many adults who were diagnosed with the condition at a young age continue to experience problems.<br>
+            People with ADHD may also have additional problems, such as sleep and anxiety disorders.<br></h4>
+</div>
+<div class="d-flex justify-content-center mt-lg-3">
+    {% if user.is_authenticated %}
+   <a href="{% url 'adhd_form' %}"><button type="button" class="btn btn-success px-lg-5">Test for ADHD >></button></a>
+   {% else %}
+   <button class="btn btn-success mr-sm-2 px-lg-5" type="submit" type="submit" data-toggle="modal"
+            data-target="#signinModal">Test for ADHD >></button>
+   {%endif%}
+</div>
+    
+{%endblock content%}

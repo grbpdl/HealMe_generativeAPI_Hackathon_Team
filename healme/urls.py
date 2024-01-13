@@ -25,4 +25,6 @@ urlpatterns = [
     path('login',signin,name="login"),
     path('logout',signout,name="logout"),
     path('chat/',include('chatbot.urls')),
+    path('progress/',include('progress_tracking.urls')),
+
 ]
