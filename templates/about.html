@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About-Us</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Roboto+Slab:wght@300;400&display=swap");
+
+
+/* Bootstrap fonts */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
+
+
+:root {
+  --font1: "Montserrat";
+  --font2: "Roboto Slab";
+  --color1: #708ce7;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+img {
+  display: block;
+}
+
+
+
+/* About HTMl */
+#about-html {
+  background-color: rgb(69, 162, 183);
+  margin-bottom: 0.5rem;
+  font-family: var(--font2);
+}
+.about-heading {
+  padding: 50px 20px;
+  color: white;
+  line-height: 1.85;
+}
+
+.about-heading p {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.ourTeam-hedding h1 {
+  font-size: 30px;
+  font-weight: bold;
+  color: #75716f;
+}
+
+.ourTeam-box {
+  border-radius: 2px;
+  border-top: 6px solid var(--color1);
+  margin: 0px;
+  background-color: #ffffff;
+}
+.section1 {
+  padding: 30px 0px 30px 0px;
+}
+.section1 img {
+  border-radius: 50%;
+  height: 130px;
+  width: 130px;
+  margin: auto;
+}
+.section2 span {
+  color: #979597;
+}
+.section3 {
+  background-color: var(--color1);
+  
+}
+.section3 i {
+  color: #fff;
+  padding: 5px;
+  font-size: 20px;
+}
+.section-info {
+  border-top: 6px solid #90dfaa;
+}
+
+@media screen and (max-width: 900px) {
+  .col-small {
+    width: 50%;
+  }
+}
+
+
+
+
+/* Utility Classes */
+.m-auto {
+  margin: auto;
+}
+
+max-width1 {
+  max-width: 80%;
+}
+
+a-center {
+  align-items: center;
+}
+
+text-center {
+  text-align: center;
+}
+
+.hr-demo {
+  width: 250px;
+  color: var(--color1);
+  height: 22px;
+}
+
+
+.cover-height{
+  height: 81.6vh;
+}
+    </style>
+
+</head>
+<body>
+    <section id="about-html" class="container-fluid">
+        <div class="container text-center about-heading">
+          <h1 style="text-align: center;">Heal Me</h1>
+          <p>Healme" is an innovative and compassionate mental health AI chatbot designed to provide vital support and assistance to individuals struggling with their emotional well-being. Developed with cutting-edge technology and guided by principles of empathy and understanding, Healme serves as a virtual companion that actively listens, empathizes, and offers meaningful insights to help users navigate their mental health challenges.</p>
+          <p>With its non-judgmental and confidential nature, Healme encourages open and honest conversations about a wide range of mental health concerns, from stress and anxiety to depression and loneliness. This AI chatbot aims to reduce the stigma surrounding mental health issues by offering a safe space for users to share their thoughts and feelings, providing resources, coping strategies, and guiding them towards seeking professional help when needed. Healme is a promising step forward in leveraging artificial intelligence to support mental well-being and foster a more compassionate and understanding society.</p>
+        </div>
+      </section>
+      
+      <div class="container section-ourTeam my-2">
+        <div class="row">
+          <div class="col-md-12 ourTeam-hedding text-center">
+            <h1 style="text-align: center; text-decoration: underline;">Our Team</h1>
+          </div>
+        </div>
+        <div class="row container">
+      
+          <div class="col-md-6 col-lg-3">
+            <div class="row section-success ourTeam-box text-center">
+              <div class="col-md-12 section1">
+                <img src="/static/images/sudip.jpg">
+              </div>
+              <div class="col-md-12 section2">
+                <h5 style="text-align: center; font-family: Montserrat;">Sudip Paudel</h5>
+                <p style="text-align: center; font-family: Montserrat;">ML and FrontEnd Developer</p>
+              </div>
+              <div class="col-md-12 section3">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+      
+          <div class="col-md-4 col-lg-3 m-2">
+            <div class="row section-success ourTeam-box text-center">
+              <div class="col-md-12 section1">
+                <img src="/static/images/gaurab.jpg">
+              </div>
+              <div class="col-md-12 section2">
+                <h5 style="text-align: center; font-family: Montserrat;">Gaurab Paudyal</h5>
+                <p style="text-align: center; font-family: Montserrat;">ML Developer</p>
+              </div>
+              <div class="col-md-12 section3">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+      
+          <div class="col-md-4 col-lg-3">
+            <div class="row section-success ourTeam-box text-center">
+              <div class="col-md-12 section1">
+                <img src="/static/images/bishal.png">
+              </div>
+              <div class="col-md-12 section2">
+                <h5 style="text-align: center; font-family: Montserrat;">Bishal Thapa</h5>
+                <p style="text-align: center; font-family: Montserrat;">Backend Developer</p>
+              </div>
+              <div class="col-md-12 section3">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+</body>
+</html>
