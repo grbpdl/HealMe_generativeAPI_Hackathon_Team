@@ -1,11 +1,5 @@
 'use strict';
 
-
-
-/**
- * all music information
- */
-
 const musicData = [{
   backgroundImage: "{% static 'images/poster-1.jpg' %}",
       posterUrl: "{% static 'images/poster-1.jpg' %}",
@@ -13,7 +7,7 @@ const musicData = [{
       album: "No Spirit",
       year: 2022,
       artist: "No Spirit x Tonion",
-      musicPath: "{% url 'music/music-1.mp3' %}",
+      musicPath: "{% static 'music/music-1.mp3' %}",
 },
   {
     backgroundImage: "./assets/images/poster-2.jpg",
