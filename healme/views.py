@@ -48,6 +48,7 @@ def signout(request):
     messages.success(request,'Signed out successfully!')
     return redirect('home')
 
+<<<<<<< HEAD
 #views.py
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -58,3 +59,13 @@ def chart(request):
         { "label": "time",  "y": 10  },
     ]
     return render(request, 'charts.html', { "data_points" : data_points }) 
+=======
+def about(request):
+    return render(request,'about.html')
+
+def yoga(request):
+    return render(request,'yoga.html')
+
+def relaxing_music(request):
+    return render(request,'index.html')
+>>>>>>> da64b25c2970f3558e61ccff65ad2e9f86e75621

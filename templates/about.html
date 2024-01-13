@@ -1,3 +1,4 @@
+{%load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -132,6 +133,8 @@ text-center {
 
 </head>
 <body>
+  <div style="width:1000px; margin-left:250px; margin-top:100px;" class="d-flex justify-content-center">
+    <div>
     <section id="about-html" class="container-fluid">
         <div class="container text-center about-heading">
           <h1 style="text-align: center;">Heal Me</h1>
@@ -151,7 +154,7 @@ text-center {
           <div class="col-md-6 col-lg-3">
             <div class="row section-success ourTeam-box text-center">
               <div class="col-md-12 section1">
-                <img src="/static/images/sudip.jpg">
+                <img src="{% static 'images/sudip.jpg' %}">
               </div>
               <div class="col-md-12 section2">
                 <h5 style="text-align: center; font-family: Montserrat;">Sudip Paudel</h5>
@@ -168,7 +171,7 @@ text-center {
           <div class="col-md-4 col-lg-3 m-2">
             <div class="row section-success ourTeam-box text-center">
               <div class="col-md-12 section1">
-                <img src="/static/images/gaurab.jpg">
+                <img src="{% static 'images/gaurab.jpg' %}">
               </div>
               <div class="col-md-12 section2">
                 <h5 style="text-align: center; font-family: Montserrat;">Gaurab Paudyal</h5>
@@ -185,7 +188,7 @@ text-center {
           <div class="col-md-4 col-lg-3">
             <div class="row section-success ourTeam-box text-center">
               <div class="col-md-12 section1">
-                <img src="/static/images/bishal.png">
+                <img src="{% static '/images/bishal.png' %}">
               </div>
               <div class="col-md-12 section2">
                 <h5 style="text-align: center; font-family: Montserrat;">Bishal Thapa</h5>
@@ -201,5 +204,7 @@ text-center {
       
         </div>
       </div>
+    </div>
+    </div>
 </body>
 </html>
