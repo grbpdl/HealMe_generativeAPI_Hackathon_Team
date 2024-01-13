@@ -47,3 +47,12 @@ def signout(request):
     logout(request)
     messages.success(request,'Signed out successfully!')
     return redirect('home')
+
+def about(request):
+    return render(request,'about.html')
+
+def yoga(request):
+    return render(request,'yoga.html')
+
+def relaxing_music(request):
+    return render(request,'index.html')
