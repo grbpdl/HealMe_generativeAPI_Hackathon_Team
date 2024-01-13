@@ -16,10 +16,18 @@
         function sendMessage() {
                 var textarea = document.getElementById("text");
                 var message = textarea.value.trim();
+                textarea.value = "";
+                var typing = document.createElement("div");
+                typing.classList.add("d-flex", "mb-4");
+                typing.setAttribute('id','typing-msg') 
+
     
                 if (message) {
                     // Display user message on the right side
                     displayMessage("user", message);
+                    displayMessage("typing", "typing...");
+
+
     
                     // Send user input to the server using AJAX
                     $.ajax({
@@ -31,10 +39,15 @@
                         },
                         success: function (response) {
                             console.log(response.response)
+                            var bot_elem = document.getElementById('bot-msg');
+                            if(bot_elem){
+                                bot_elem.style.display = "none";
+                            }
+                            
                             displayMessage("bot", response.response);
     
                             // Clear the input field
-                            textarea.value = "";
+                            
     
                             // Scroll to the latest message
                             scrollChatToBottom();
@@ -63,6 +76,13 @@
                     </div>
                 `;
             }
+         else if(sender === "typing") { 
+            newMessage.innerHTML = `
+                <div class="p-3 ms-3 border" id="#bot-msg" style="border-radius: 15px; background-color: #93df9f59 ; flex-wrap: wrap;">
+                    <p class="small mb-0">${message}</p>
+                </div>
+            `;
+        }
     
             chatBody.appendChild(newMessage);
         }

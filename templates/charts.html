@@ -1,27 +1,42 @@
-
-{% load static %}
+{%load static%}
+<!DOCTYPE HTML>
 <html>
 <head>
-<title>CanvasJS Python Charts</title>
-<script src="{% static 'canvasjs.min.js' %}"></script>
-<script>
-    window.onload = function () {
-        var chart = new CanvasJS.Chart("chartContainer", {
-            animationEnabled: true, // change to false
-            title:{
-                text: "Python Column Chart"
-            },
-            data: [{
-                type: "column",
-                dataPoints: {{ data_points | safe }}
-            }]
-        });
-        chart.render();
-    }
+<script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script type="text/javascript">
+
+window.onload = function () {
+	var chart = new CanvasJS.Chart("chartContainer", {
+		title:{
+			text: "ADHD Progression chart"              
+		},
+        data: [              
+        {
+            type: "column",
+            dataPoints:   [ { label: "Day1",  y: 5  },
+            { label: "Day2",  y: 4 },
+            { label: "Day3",  y: 4 },
+            { label: "Day4",  y: 3 },
+            { label: "Day5",  y: 4 },
+            { label: "Day6",  y: 2 },]
+        }
+        ]
+	});
+	chart.render();
+}
 </script>
-    
 </head>
 <body>
-    <div id="chartContainer" style="width: 100%; height: 360px;"></div>
+<div class="d-flex justify-content-center" style="margin-top:200px;">
+    <div id="chartContainer"  style="height: 300px; width: 70%;"></div>
+</div>
+<div class="d-flex justify-content-center">
+<a class="btn btn-success" href="{% url 'home' %}">Go to Home</a>
+<div>
 </body>
-</html>                                   
+</html>
+
+
+
